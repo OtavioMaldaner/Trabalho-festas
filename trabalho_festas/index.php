@@ -14,12 +14,39 @@ $festas = Festa::findall();
 
 <table>
     <tr>
-        <td>Nome</td>
-        <td>Endereço</td>
-        <td>Cidade</td>
-        <td>Data</td>
+        <td>
+            Nome
+            <a href="index.php?tipo=nome&ordem=asc">Ascendente</a>
+            <a href="index.php?tipo=nome&ordem=desc">Descentente</a>
+        </td>
+        <td>
+            Endereço
+            <a href="index.php?tipo=endereco&ordem=asc">Ascendente</a>
+            <a href="index.php?tipo=endereco&ordem=desc">Descentente</a>
+        </td>
+        <td>
+            Cidade
+            <a href="index.php?tipo=cidade&ordem=asc">Ascendente</a>
+            <a href="index.php?tipo=cidade&ordem=desc">Descentente</a>
+        </td>
+        <td>
+            Data
+            <a href="index.php?tipo=data&ordem=asc">Ascendente</a>
+            <a href="index.php?tipo=data&ordem=desc">Descentente</a>
+        </td>
     </tr>
     <?php
+    $tipo = 'nome';
+    if (isset($_GET['tipo'])) {
+        $tipo = $_GET['tipo'];
+    }
+    $ordem = 'asc';
+    if (isset($_GET['ordem'])) {
+        $ordem = $_GET['ordem'];
+    }
+    if ($tipo == 'nome' && $ordem == 'desc') {
+        krsort($festas);
+    }
     foreach($festas as $festa){
         echo "<tr>";
         echo "<td>{$festa->getNome()}</td>";
@@ -28,10 +55,6 @@ $festas = Festa::findall();
         //Formatação da data para exibir como dia, mês e ano.
         $dataFormatada = new DateTime($festa->getData());
         echo "<td>{$dataFormatada->format('d/m/Y')}</td>";
-        echo "<td>
-                <a href='formEdit.php?idFesta={$festa->getIdFesta()}'>Editar</a>
-                <a href='excluir.php?idFesta={$festa->getIdFesta()}'>Excluir</a> 
-             </td>";
         echo "</tr>";
     }
     ?>

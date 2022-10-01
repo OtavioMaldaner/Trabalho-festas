@@ -87,9 +87,14 @@ class Festa implements ActiveRecord{
         }
         return $festas;
     }
-    public static function festasRealizadas():array {
+    public static function festasRealizadas(string $coluna, string $tipo):array {
         $conexao = new MySQl();
-        $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY data DESC, cidade DESC, nome DESC;";
+        if ($coluna && $tipo != '') {
+            $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY data DESC, cidade DESC, nome DESC;";
+        }
+        if ($coluna && $tipo) {  
+            $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY {$coluna} {$tipo};";
+        }
         $resultados = $conexao->consulta($sql);
         $festas = array();
         foreach($resultados as $resultado){

@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__."/vendor/autoload.php";
-$festas = Festa::festasRealizadas();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +13,32 @@ $festas = Festa::festasRealizadas();
 
     <table>
         <tr>
-            <td>Nome</td>
-            <td>Endereço</td>
-            <td>Cidade</td>
-            <td>Data</td>
+            <td>
+                Nome
+                <a href="festasRealizadas.php?coluna=nome&tipo=ASC">Ascendente</a>
+                <a href="festasRealizadas.php?coluna=nome&tipo=DESC">Decrescente</a>
+            </td>
+            <td>
+                Endereço
+                <a href="festasRealizadas.php?coluna=endereco&tipo=ASC">Ascendente</a>
+                <a href="festasRealizadas.php?coluna=endereco&tipo=DESC">Decrescente</a>
+            </td>
+            <td>
+                Cidade
+                <a href="festasRealizadas.php?coluna=cidade&tipo=ASC">Ascendente</a>
+                <a href="festasRealizadas.php?coluna=cidade&tipo=DESC">Decrescente</a>
+            </td>
+            <td>
+                Data
+                <a href="festasRealizadas.php?coluna=data&tipo=ASC">Ascendente</a>
+                <a href="festasRealizadas.php?coluna=data&tipo=DESC">Decrescente</a>
+            </td>
         </tr>
         <?php
+        // var_dump($_GET);
+        $coluna = $_GET['coluna'];
+        $tipo = $_GET['tipo'];
+        $festas = Festa::festasRealizadas($coluna, $tipo);
         foreach($festas as $festa){
             echo "<tr>";
             echo "<td>{$festa->getNome()}</td>";

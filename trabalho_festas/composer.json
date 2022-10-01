@@ -1,0 +1,15 @@
+{
+    "name": "otavi/trabalho_festas",
+    "authors": [
+        {
+            "name": "Otávio Maldaner",
+            "email": "otaviomaldaner571@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}

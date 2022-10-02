@@ -1,4 +1,4 @@
-# Trabalho avaliativo - segundo semestre
+# Trabalho avaliativo - segundo trimestre
 ## Questões avaliadas:
 - Na página [festasRealizadas.php](https://github.com/OtavioMaldaner/Trabalho-festas/blob/main/trabalho_festas/festasRealizadas.php) são apresentadas as festas cujas datas são anteriores a data atual. A ordenação deve ser por data mais recente para mais antiga, seguido do nome da cidade e nome da festa (1.5 pontos).
 - Na página [proximasFestas.php](https://github.com/OtavioMaldaner/Trabalho-festas/blob/main/trabalho_festas/proximasFestas.php) são apresentadas as festas cujas datas são posteriores a data atual. A ordenação deve ser por data mais próxima para mais distante, seguido do nome da cidade e nome da festa (1.5 pontos).

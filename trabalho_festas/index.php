@@ -16,15 +16,23 @@ $festas = Festa::findall();
     <tr>
         <td>
             Nome
+            <a href="index.php?coluna=nome&tipo=ASC">Ascendente</a>
+            <a href="index.php?coluna=nome&tipo=DESC">Decrescente</a>
         </td>
         <td>
             Endereço
+            <a href="index.php?coluna=endereco&tipo=ASC">Ascendente</a>
+            <a href="index.php?coluna=endereco&tipo=DESC">Decrescente</a>
         </td>
         <td>
             Cidade
+            <a href="index.php?coluna=cidade&tipo=ASC">Ascendente</a>
+            <a href="index.php?coluna=cidade&tipo=DESC">Decrescente</a>
         </td>
         <td>
             Data
+            <a href="index.php?coluna=data&tipo=ASC">Ascendente</a>
+            <a href="index.php?coluna=data&tipo=DESC">Decrescente</a>
         </td>
     </tr>
     <?php
@@ -42,13 +50,13 @@ $festas = Festa::findall();
 </table>
 <a href='formCad.php'>Adicionar Festa</a>
 <br>
-<a href="festasRealizadas.php">Visualizar festas realizadas</a>
+<a href="festasRealizadas.php?coluna=padrao&tipo=padrao">Visualizar festas realizadas</a>
 <br>
-<a href="proximasFestas.php">Visualizar próximas festas</a>
+<a href="proximasFestas.php?coluna=padrao&tipo=padrao">Visualizar próximas festas</a>
 <br>
-<a href="cidadesFestas.php">Veja as festas próximas de você</a>
+<a href="cidadesFestas.php?coluna=padrao&tipo=padrao">Veja as festas próximas de você</a>
 <br>
-<a href="festasMes.php">Veja o número de festas por mês</a>
+<a href="festasMes.php?coluna=padrao&tipo=padrao">Veja o número de festas por mês</a>
 </body>
 </html>
 

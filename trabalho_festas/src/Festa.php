@@ -75,7 +75,7 @@ class Festa implements ActiveRecord{
         $p->setIdFesta($resultado[0]['idFesta']);
         return $p;
     }
-    public static function findall():array{
+    public static function findall(string $coluna = 'padrao', string $tipo = 'padrao'):array{
         $conexao = new MySQL();
         $sql = "SELECT * FROM festas";
         $resultados = $conexao->consulta($sql);
@@ -87,9 +87,9 @@ class Festa implements ActiveRecord{
         }
         return $festas;
     }
-    public static function festasRealizadas(string $coluna, string $tipo):array {
+    public static function festasRealizadas(string $coluna = 'padrao', string $tipo = 'padrao'):array {
         $conexao = new MySQl();
-        if ($coluna == NULL && $tipo == NULL) {
+        if ($coluna == 'padrao' && $tipo == 'padrao') {
             $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY data DESC, cidade DESC, nome DESC;";
         } else if ($coluna && $tipo) {  
             $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY {$coluna} {$tipo}, data DESC, cidade DESC, nome DESC;";
@@ -103,9 +103,9 @@ class Festa implements ActiveRecord{
         }
         return $festas;
     }
-    public static function proximasFestas(string $coluna, string $tipo):array {
+    public static function proximasFestas(string $coluna = 'padrao', string $tipo = 'padrao'):array {
         $conexao = new MySQl();
-        if ($coluna == null && $tipo == null) {
+        if ($coluna == 'padrao' && $tipo == 'padrao') {
             $sql = "SELECT * FROM festas WHERE data > NOW() ORDER BY data, cidade DESC, nome DESC;";
         } else if ($coluna && $tipo) {  
             $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY {$coluna} {$tipo}, data, cidade DESC, nome DESC;";
@@ -119,9 +119,9 @@ class Festa implements ActiveRecord{
         }
         return $festas;
     }
-    public static function cidadesFestas(string $coluna, string $tipo):array {
+    public static function cidadesFestas(string $coluna = 'padrao', string $tipo = 'padrao'):array {
         $conexao = new MySQl();
-        if ($coluna == null && $tipo == null) {
+        if ($coluna == 'padrao' && $tipo == 'padrao') {
             $sql = "SELECT DISTINCT cidade, COUNT(cidade) contagem FROM festas GROUP BY cidade ORDER BY COUNT(cidade) DESC, cidade;";
         } else if ($coluna && $tipo) {  
             $sql = "SELECT DISTINCT cidade, COUNT(cidade) contagem FROM festas GROUP BY cidade ORDER BY {$coluna} {$tipo}, COUNT(cidade) DESC, cidade;";
@@ -133,9 +133,9 @@ class Festa implements ActiveRecord{
         }
         return $festas;
     }
-    public static function mesesFestas(string $coluna, string $tipo):array {
+    public static function mesesFestas(string $coluna = 'padrao', string $tipo = 'padrao'):array {
         $conexao = new MySQl();
-        if ($coluna == null && $tipo == null) {
+        if ($coluna == 'padrao' && $tipo == 'padrao') {
             $sql = "SELECT COUNT(nome) festas, MONTHNAME(data) mes FROM festas GROUP BY MONTH(data);";
         } else if ($coluna && $tipo) {  
             $sql = "SELECT COUNT(nome) festas, MONTHNAME(data) mes FROM festas GROUP BY MONTH(data) ORDER BY {$coluna} {$tipo};";

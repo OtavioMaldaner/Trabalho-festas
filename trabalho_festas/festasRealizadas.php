@@ -35,7 +35,6 @@ require_once __DIR__."/vendor/autoload.php";
             </td>
         </tr>
         <?php
-        // var_dump($_GET);
         $coluna = $_GET['coluna'];
         $tipo = $_GET['tipo'];
         $festas = Festa::festasRealizadas($coluna, $tipo);

@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__."/vendor/autoload.php";
-$festas = Festa::mesesFestas();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +13,21 @@ $festas = Festa::mesesFestas();
 
     <table>
         <tr>
-            <td>Mês</td>
-            <td>Festas</td>
+            <td>
+                Mês
+                <a href="festasMes.php?coluna=MONTHNAME(data)&tipo=ASC">Ascendente</a>
+                <a href="festasMes.php?coluna=MONTHNAME(data)&tipo=DESC">Decrescente</a>
+            </td>
+            <td>
+                Festas
+                <a href="festasMes.php?coluna=COUNT(nome)&tipo=ASC">Ascendente</a>
+                <a href="festasMes.php?coluna=COUNT(nome)&tipo=DESC">Decrescente</a>
+            </td>
         </tr>
         <?php
+        $coluna = $_GET['coluna'];
+        $tipo = $_GET['tipo'];
+        $festas = Festa::mesesFestas($coluna, $tipo);
         foreach($festas as $key => $festa){
             echo "<tr>";
             echo "<td>{$key}</td>";

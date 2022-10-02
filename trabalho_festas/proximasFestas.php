@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__."/vendor/autoload.php";
-$festas = Festa::proximasFestas();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +13,31 @@ $festas = Festa::proximasFestas();
 
     <table>
         <tr>
-            <td>Nome</td>
-            <td>Endereço</td>
-            <td>Cidade</td>
-            <td>Data</td>
+            <td>
+                Nome
+                <a href="proximasFestas.php?coluna=nome&tipo=ASC">Ascendente</a>
+                <a href="proximasFestas.php?coluna=nome&tipo=DESC">Decrescente</a>
+            </td>
+            <td>
+                Endereço
+                <a href="proximasFestas.php?coluna=endereco&tipo=ASC">Ascendente</a>
+                <a href="proximasFestas.php?coluna=endereco&tipo=DESC">Decrescente</a>
+            </td>
+            <td>
+                Cidade
+                <a href="proximasFestas.php?coluna=cidade&tipo=ASC">Ascendente</a>
+                <a href="proximasFestas.php?coluna=cidade&tipo=DESC">Decrescente</a>
+            </td>
+            <td>
+                Data
+                <a href="proximasFestas.php?coluna=data&tipo=ASC">Ascendente</a>
+                <a href="proximasFestas.php?coluna=data&tipo=DESC">Decrescente</a>
+            </td>
         </tr>
         <?php
+        $coluna = $_GET['coluna'];
+        $tipo = $_GET['tipo'];
+        $festas = Festa::proximasFestas($coluna, $tipo);
         foreach($festas as $festa){
             echo "<tr>";
             echo "<td>{$festa->getNome()}</td>";

@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__."/vendor/autoload.php";
-$festas = Festa::cidadesFestas();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +13,21 @@ $festas = Festa::cidadesFestas();
 
     <table>
         <tr>
-            <td>Cidade</td>
-            <td>Contagem</td>
+            <td>
+                Cidade
+                <a href="cidadesFestas.php?coluna=cidade&tipo=ASC">Ascendente</a>
+                <a href="cidadesFestas.php?coluna=cidade&tipo=DESC">Decrescente</a>
+            </td>
+            <td>
+                Contagem
+                <a href="cidadesFestas.php?coluna=COUNT(cidade)&tipo=ASC">Ascendente</a>
+                <a href="cidadesFestas.php?coluna=COUNT(cidade)&tipo=DESC">Decrescente</a>
+            </td>
         </tr>
         <?php
+        $coluna = $_GET['coluna'];
+        $tipo = $_GET['tipo'];
+        $festas = Festa::cidadesFestas($coluna, $tipo);
         foreach($festas as $key => $festa){
             echo "<tr>";
             echo "<td>{$key}</td>";

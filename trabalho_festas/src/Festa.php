@@ -89,11 +89,10 @@ class Festa implements ActiveRecord{
     }
     public static function festasRealizadas(string $coluna, string $tipo):array {
         $conexao = new MySQl();
-        if ($coluna && $tipo != '') {
+        if ($coluna == NULL && $tipo == NULL) {
             $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY data DESC, cidade DESC, nome DESC;";
-        }
-        if ($coluna && $tipo) {  
-            $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY {$coluna} {$tipo};";
+        } else if ($coluna && $tipo) {  
+            $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY {$coluna} {$tipo}, data DESC, cidade DESC, nome DESC;";
         }
         $resultados = $conexao->consulta($sql);
         $festas = array();
@@ -104,9 +103,13 @@ class Festa implements ActiveRecord{
         }
         return $festas;
     }
-    public static function proximasFestas():array {
+    public static function proximasFestas(string $coluna, string $tipo):array {
         $conexao = new MySQl();
-        $sql = "SELECT * FROM festas WHERE data > NOW() ORDER BY data, cidade DESC, nome DESC;";
+        if ($coluna == null && $tipo == null) {
+            $sql = "SELECT * FROM festas WHERE data > NOW() ORDER BY data, cidade DESC, nome DESC;";
+        } else if ($coluna && $tipo) {  
+            $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY {$coluna} {$tipo}, data, cidade DESC, nome DESC;";
+        }
         $resultados = $conexao->consulta($sql);
         $festas = array();
         foreach($resultados as $resultado){
@@ -116,9 +119,13 @@ class Festa implements ActiveRecord{
         }
         return $festas;
     }
-    public static function cidadesFestas():array {
+    public static function cidadesFestas(string $coluna, string $tipo):array {
         $conexao = new MySQl();
-        $sql = "SELECT DISTINCT cidade, COUNT(cidade) contagem FROM festas GROUP BY cidade ORDER BY COUNT(cidade) DESC, cidade;";
+        if ($coluna == null && $tipo == null) {
+            $sql = "SELECT DISTINCT cidade, COUNT(cidade) contagem FROM festas GROUP BY cidade ORDER BY COUNT(cidade) DESC, cidade;";
+        } else if ($coluna && $tipo) {  
+            $sql = "SELECT DISTINCT cidade, COUNT(cidade) contagem FROM festas GROUP BY cidade ORDER BY {$coluna} {$tipo}, COUNT(cidade) DESC, cidade;";
+        }
         $resultados = $conexao->consulta($sql);
         $festas = array();
         foreach($resultados as $resultado){
@@ -126,9 +133,13 @@ class Festa implements ActiveRecord{
         }
         return $festas;
     }
-    public static function mesesFestas():array {
+    public static function mesesFestas(string $coluna, string $tipo):array {
         $conexao = new MySQl();
-        $sql = "SELECT COUNT(nome) festas, MONTHNAME(data) mes FROM festas GROUP BY MONTH(data);";
+        if ($coluna == null && $tipo == null) {
+            $sql = "SELECT COUNT(nome) festas, MONTHNAME(data) mes FROM festas GROUP BY MONTH(data);";
+        } else if ($coluna && $tipo) {  
+            $sql = "SELECT COUNT(nome) festas, MONTHNAME(data) mes FROM festas GROUP BY MONTH(data) ORDER BY {$coluna} {$tipo};";
+        }
         $resultados = $conexao->consulta($sql);
         $festas = array();
         foreach($resultados as $resultado){

@@ -36,6 +36,6 @@ require_once __DIR__."/vendor/autoload.php";
         }
         ?>
     </table>
-    <a href="index.php">Voltar para a tela inicial</a>
+    <a href="index.php?coluna=padrao&tipo=padrao">Voltar para a tela inicial</a>
     </body>
 </html>

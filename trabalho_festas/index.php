@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__."/vendor/autoload.php";
-$festas = Festa::findall();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +35,9 @@ $festas = Festa::findall();
         </td>
     </tr>
     <?php
+    $coluna = $_GET['coluna'];
+    $tipo = $_GET['tipo'];
+    $festas = Festa::findall($coluna, $tipo);
     foreach($festas as $festa){
         echo "<tr>";
         echo "<td>{$festa->getNome()}</td>";

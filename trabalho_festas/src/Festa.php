@@ -112,7 +112,7 @@ class Festa implements ActiveRecord{
         if ($coluna == 'padrao' && $tipo == 'padrao') {
             $sql = "SELECT * FROM festas WHERE data > NOW() ORDER BY data, cidade DESC, nome DESC;";
         } else {  
-            $sql = "SELECT * FROM festas WHERE data < NOW() ORDER BY {$coluna} {$tipo}, data, cidade DESC, nome DESC;";
+            $sql = "SELECT * FROM festas WHERE data > NOW() ORDER BY {$coluna} {$tipo}, data, cidade DESC, nome DESC;";
         }
         $resultados = $conexao->consulta($sql);
         $festas = array();

@@ -8,7 +8,7 @@ if(isset($_POST['botao'])){
     $festa = new Festa($_POST['nome'],$_POST['endereco'],$_POST['cidade'],$_POST['data']);
     $festa->setIdFesta($_POST['idFesta']);
     $festa->save();
-    header("location: index.php");
+    header("location: homepage.php");
 }
 ?>
 <!DOCTYPE html>

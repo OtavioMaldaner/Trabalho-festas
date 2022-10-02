@@ -3,7 +3,7 @@ if(isset($_POST['botao'])){
     require_once __DIR__."/vendor/autoload.php";
     $festa = new Festa($_POST['nome'],$_POST['endereco'],$_POST['cidade'],$_POST['data']);
     $festa->save();
-    header("location: index.php");
+    header("location: homepage.php");
 }
 ?>
 <!DOCTYPE html>
